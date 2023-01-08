@@ -4,11 +4,11 @@ const HomeSec2 = () => {
     return (
 
         <section className='h-auto md:h-auto lg:h-[100vh] w-[100vw] flex flex-col md:flex-col lg:flex-row '>
-            <div className="w-screen md:w-screen lg:w-[50vw] h-auto  lg:absolute lg:right-0 lg:top-[85vh] ">
+            <div className="w-screen md:w-screen lg:w-[50vw] h-auto  lg:absolute lg:right-0 lg:top-[90vh] ">
                 <img src={nurses} alt="Lovegrity Nurses" className="object-cover object-middle h-[45vh] md:h-[45vh] lg:h-[95vh] w-screen md:w-full lg:w-[50vw]  "></img>
             </div>
             <div className="h-[65vh] w-[100vw] md:w-[100vw] lg:w-[50vw] ">
-                <div className="h-[50%] text-center mx-auto mt-[5vh] w-[90vw] md:w-[90vw] lg:w-[55%] " >
+                <div className="h-[50%] text-center mx-auto mt-[5vh] w-[90vw] md:w-[90vw] lg:w-[55%] break-words " >
                     <header>QUALITY SKILLED CONCIERGE NURSING SERVICES WITH HEART</header>
                     <br/>
                     <h4>NEED A NURSE (RN)?</h4>
