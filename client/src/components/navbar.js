@@ -10,9 +10,9 @@ const Navbar = () => {
         const navbar = document.getElementById('navbar');
         // const navLogo = document.getElementById('navlogo');
         if (window.scrollY > 100){
-            navbar.classList.replace("h-[15vh]","h-[20vh]")
-        } else if(window.scrollY < 10 && navbar.classList.contains("h-[20vh]")){
-            navbar.classList.replace("h-[20vh]","h-[15vh]")
+            navbar.classList.replace("h-[20vh]","h-[10vh]")
+        } else if(window.scrollY < 10 && navbar.classList.contains("h-[10vh]")){
+            navbar.classList.replace("h-[10vh]","h-[20vh]")
 
         }
     } 
@@ -20,7 +20,7 @@ const Navbar = () => {
     
     return (
         <div className="fixed top-0 z-50">
-            <nav id="navbar" class="h-[15vh] w-[100vw] text-white text-[1.3em] font-[baskerville] tracking-wide bg-purple-500 bg-opacity-25 flex flex-row justify-around ">
+            <nav id="navbar" class="h-[15vh] w-[100vw] text-white text-[1.3em] font-[baskerville] tracking-wide bg-purple-500 bg-opacity-50 flex flex-row justify-around ">
                 <div className="my-auto dropdownMenu w-[25%] flex flex-row justify-around ">
                     <a href="#home">Home</a> &nbsp;
                     <a href="#about">About Us</a> &nbsp;
