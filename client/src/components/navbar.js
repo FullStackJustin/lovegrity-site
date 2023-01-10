@@ -16,11 +16,11 @@ const Navbar = () => {
 
         }
     } 
-    window.addEventListener('scroll',()=> {navToggle()})
+    window.addEventListener('scroll',() => {navToggle()})
     
     return (
         <div className="fixed top-0 z-50">
-            <nav id="navbar" class="h-[15vh] w-[100vw] text-white text-[1.3em] font-[baskerville] tracking-wide bg-purple-500 bg-opacity-50 flex flex-row justify-around ">
+            <nav id="navbar" className="h-[15vh] w-[100vw] text-white text-[1.3em] font-[baskerville] tracking-wide bg-purple-500 bg-opacity-50 flex flex-row justify-around ">
                 <div className="my-auto dropdownMenu w-[25%] flex flex-row justify-around ">
                     <a href="#home">Home</a> &nbsp;
                     <a href="#about">About Us</a> &nbsp;
@@ -31,7 +31,7 @@ const Navbar = () => {
                     <a href="#packages">Care Packages</a> &nbsp;
                     <a href="#More" className='dropdown'>  {/* onClick={toggleDropdown} */} 
                         More 
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <i className="fa-solid fa-chevron-down"></i>
                         {/* <div className="hidden dropdown-menu ">
                             <a href="#faq">FAQ</a>
                             <a href="#contact">Contact</a>
@@ -39,9 +39,9 @@ const Navbar = () => {
                     </a>
                     &nbsp; | &nbsp;
                     <div>
-                    <a href="#services"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="#services"><i className="fa-solid fa-cart-shopping"></i></a>
                     &nbsp; &nbsp;
-                    <a href="#services"><i class="fa-regular fa-user"></i></a>
+                    <a href="#services"><i className="fa-regular fa-user"></i></a>
                     </div>
                 </div>
             </nav>

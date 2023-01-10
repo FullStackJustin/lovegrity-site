@@ -1,0 +1,19 @@
+.firstInputs::placeholder{
+    position:absolute;
+    top:  30%;
+    left: 15px;
+    color: rgba(0, 0, 0, 0.750);
+}
+#formMessage::placeholder{
+    position:absolute;
+    top:  15px;
+    left: 15px;
+    color: rgba(0, 0, 0, 0.750);
+    
+}
+p a {
+    color:#844CBC;
+}
+p a:hover{
+    color: #7040a0;
+}

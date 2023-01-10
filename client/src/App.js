@@ -1,6 +1,8 @@
 import './App.css';
 import HomeSec2 from './components/section2home';
 import Section3Home from './components/section3home';
+import Section4Home from './components/section4home';
+import Section5Home from './components/section5home';
 
 function App() {
 
@@ -22,6 +24,8 @@ function App() {
       </div>
       <HomeSec2 />
       <Section3Home/>
+      <Section4Home/>
+      <Section5Home/>
     </div>
   );
 }
