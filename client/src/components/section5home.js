@@ -72,7 +72,7 @@ const Section5Home = () => {
             <div className="relative  bg-black text-white h-[30vh] ">
                 <header className="font-bold tracking-widest font-[bodoni-moda] text-[1.5em] pt-[1em] pl-[5%] ">Check Us Out on Facebook</header>
                 <hr className="w-[90%] mx-auto bg-black lg:h-[.10em] h-[.15em] my-[2.5vh] "></hr>
-                <a href="https://www.facebook.com/109441048298296" className="w-[100vw] mt-[2.5em] flex flex-row justify-center "><i class="fa-brands fa-3x fa-facebook"></i></a>
+                <a href="https://www.facebook.com/109441048298296" className="w-[100vw] mt-[2.5em] flex flex-row justify-center "><i className="fa-brands fa-3x fa-facebook"></i></a>
             </div>
         </section>
     )
