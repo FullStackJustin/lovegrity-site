@@ -6,6 +6,9 @@ const Navbar = () => {
     const toggleDropdown = () => {
         const dropdownMenu = document.getElementById('dropdown');
         dropdownMenu.classList.toggle('show');
+        const moreArrow = document.getElementById('moreArrow');
+        moreArrow.classList.toggle("rotate-180")
+        // if moreArrow.classList.contains("")
     }
     const navToggle = () => {
         const navbar = document.getElementById('navbar');
@@ -17,6 +20,7 @@ const Navbar = () => {
 
         }
     }
+
     window.addEventListener('scroll', () => { navToggle() })
 
     return (
@@ -34,11 +38,11 @@ const Navbar = () => {
                         <div className="inline-block dropdown my-auto">
                             <button onClick={toggleDropdown} className='dropBtn flex flex-row my-auto items-center'>  {/* onClick={toggleDropdown} */}
                                 More &nbsp;
-                                <i className="fa-solid fa-2xs fa-chevron-down my-auto"></i>
+                                <i id="moreArrow" className="transition-transform duration-400 fa-solid fa-2xs fa-chevron-down my-auto"></i>
                             </button>
-                            <div className="dropdownContent hidden bg-[#8047BA] p-[15px] shadow-custom-shadow absolute z-50" id="dropdown">
-                                <a className="block" href="#faq">FAQ</a>
-                                <a className="block" href="/contact">Contact Us</a>
+                            <div className="dropdownContent mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow absolute z-50" id="dropdown">
+                                <a className="block py-[5px]" href="#faq">FAQ</a>
+                                <a className="block py-[5px]" href="/contact">Contact</a>
                             </div>
                         </div>
                         <div className="flex flex-row items-center border-solid border-white ml-[15px] pl-[15px] border-l-2">

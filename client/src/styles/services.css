@@ -1,3 +1,7 @@
 .show{
     display: block;
 }
+ul li {
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+}
