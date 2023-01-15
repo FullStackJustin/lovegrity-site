@@ -4,6 +4,7 @@ import Home from './pages/home';
 import ContactPg from './pages/contact';
 import AboutPg from './pages/about';
 import Services from './pages/services';
+import PackagesPg from './pages/packages';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/contact" element={<ContactPg/>}></Route>
         <Route path="/about" element={<AboutPg/>}></Route>
         <Route path="/services" element={<Services/>}></Route>
+        <Route path="/packages" element={<PackagesPg/>}></Route>
       </Routes>
     </Router>
   );

@@ -4,7 +4,7 @@ const HomeSec2 = () => {
     return (
 
         <section className='h-[130vh] overflow-y-scroll md:h-[110vh] lg:h-[115vh] w-[100vw] flex flex-col md:flex-col lg:flex-row '>
-            <div className="w-screen md:w-screen lg:w-[50vw] h-auto  lg:absolute lg:right-0 lg:top-[90vh] ">
+            <div className="w-screen md:w-screen lg:w-[50vw] h-auto  lg:absolute lg:right-0 lg:top-[95vh] ">
                 <img src={nurses} alt="Lovegrity Nurses" className="object-cover object-middle h-[45vh] md:h-[45vh] lg:h-[95vh] w-screen md:w-full lg:w-[50vw]  "></img>
             </div>
             <div className="h-[65vh] w-[100vw] md:w-[100vw] lg:w-[50vw] ">
