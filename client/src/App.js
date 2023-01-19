@@ -5,6 +5,8 @@ import ContactPg from './pages/contact';
 import AboutPg from './pages/about';
 import Services from './pages/services';
 import PackagesPg from './pages/packages';
+import Login from './pages/login';
+import Registration from './pages/signup';
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         <Route path="/about" element={<AboutPg/>}></Route>
         <Route path="/services" element={<Services/>}></Route>
         <Route path="/packages" element={<PackagesPg/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/registration" element={<Registration/>}></Route>
       </Routes>
     </Router>
   );
