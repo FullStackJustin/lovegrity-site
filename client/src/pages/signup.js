@@ -37,7 +37,7 @@ const Registration = () => {
                         <header>Create an Account</header>
                     </div>
                     <br />
-                    <form onSubmit={register} className="mx-auto w-full flex flex-col ">
+                    <form onSubmit={register} id='regForm' className="mx-auto w-full flex flex-col ">
                         <input onChange={(e) => setRegEmail(e.target.value)} type="email" placeholder='Enter your email address'></input>
                         <br />
                         <input onChange={(e) => setRegPassword(e.target.value)} type="password" placeholder='Enter your password'></input>

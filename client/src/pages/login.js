@@ -9,8 +9,10 @@ const Login = () => {
     const [loginPassword, setLoginPassword] = useState("");
     const navigate = useNavigate();
     const user = getAuth();
+    console.log(loginEmail, loginPassword, user.currentUser)
 
-    const handleLogin = async() => {
+    const handleLogin = async(e) => {
+        e.preventDefault();
         if (!user.currentUser){
             try {
                 await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
@@ -27,7 +29,7 @@ const Login = () => {
         <div>
             <div className="h-[15vh] w-screen bg-[#8047BA] "></div>
             <div className="w-full min-h-fit">
-                <form onSubmit={handleLogin}>
+                <form id='loginForm' onSubmit={handleLogin}>
                     <input onChange={(e) => setLoginEmail(e.target.value)} type="email" placeholder='Enter your email address'></input>
                     <input onChange={(e) => setLoginPassword(e.target.value)} type="password" placeholder='Enter your password'></input>
                     <button type="submit">Log In</button>

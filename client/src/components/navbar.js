@@ -1,5 +1,5 @@
 import { getAuth, signOut } from "firebase/auth";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import lovegrityLogo from "../assets/lovegrityLogo.png"
 import "../styles/nav.css"
 
@@ -46,9 +46,20 @@ const Navbar = () => {
     //     }
     // }
 
-    const logout = () => {
+    const logout = (e) => {
+        e.preventDefault();
         signOut(user)
+        
     }
+    const [loggedIn, setLoggedIn] = useState()
+    console.log(loggedIn)
+    useEffect(() => {
+        if(user.currentUser !== null){
+            setLoggedIn(true)
+        } else {
+            setLoggedIn(false)
+        }
+    },[])
 
 
     window.addEventListener('scroll', () => { navToggle() })
@@ -110,18 +121,19 @@ const Navbar = () => {
                             <div className="transferToMenu inlineBlock ">
                                 <button onClick={toggleUserDropdown} className="userDropBtn flex flex-row my-auto items-center"><i className="transferToMenu fa-regular fa-user"></i></button>
                                 <div id="userDropContent" className="usersDropContent absolute right-[4vw] mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow z-50">
-                                    {user.currentUser ? 
+                                    {loggedIn ? 
                                     <>
                                         <p className="block pb-[15px]">Signed in as:</p>
                                         <p className="block py-[5px]">{user.currentUser ? user.currentUser.email : ""}</p>
                                         <hr />
                                         <p className="block py-[5px]">Bookings</p>
                                         <p className="block py-[5px]">My Account</p>
-                                        <button onClick={logout}>Log Out</button>
+                                       <a href="/"><button onClick={logout}>Log Out</button></a>
                                     </> : 
                                     <>
                                         <a href="/login"><p className="block py-[5px]">Log in</p></a>
                                         <a href="/registration"><p className="block py-[5px]">Create an Account</p></a>
+                                        <button onClick={logout}>Log Out</button>
                                     </>
                                     }
                                 </div>
