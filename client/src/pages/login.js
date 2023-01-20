@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleLogin = async(e) => {
         e.preventDefault();
-        if (!user.currentUser){
+        if (user.currentUser){
             try {
                 await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
                 .then(() => {navigate('/')})
