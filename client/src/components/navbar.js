@@ -4,18 +4,16 @@ import lovegrityLogo from "../assets/lovegrityLogo.png"
 import "../styles/nav.css"
 import { logout } from "../firebase";
 import { auth } from "../firebase";
+// import { UserAuth } from "../authContext";
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const {loggedIn} = props;
     const [isOpen, setIsOpen] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(false)
     const [user, setUser] = useState(auth.currentUser)
     console.log(loggedIn)
     useEffect(() => {
-        if(user !== null){
-            setLoggedIn(true)
-        } else {
-            setLoggedIn(false)
-        }
+        console.log(user)
+        loggedIn ? setUser(auth.currentUser) : setUser(null);
     },[user])
 
     // toggle hidden dropdown content on more button
@@ -123,7 +121,7 @@ const Navbar = () => {
                                     {loggedIn ? 
                                     <>
                                         <p className="block pb-[15px]">Signed in as:</p>
-                                        <p className="block py-[5px]">{auth.currentUser ? user.email : ""}</p>
+                                        <p className="block py-[5px]">{auth.currentUser ? auth.currentUser.email : ""}</p>
                                         <hr />
                                         <p className="block py-[5px]">Bookings</p>
                                         <p className="block py-[5px]">My Account</p>

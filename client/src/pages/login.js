@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 
 
-const Login = () => {
+const Login = (props) => {
+    const {handleLoggedIn} = props;
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const navigate = useNavigate();
@@ -13,10 +14,11 @@ const Login = () => {
 
     const handleLogin = async(e) => {
         e.preventDefault();
-        if (user.currentUser){
+        if (user.currentUser == null ){
             try {
-                await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-                .then(() => {navigate('/')})
+                await signInWithEmailAndPassword(user, loginEmail, loginPassword)
+                handleLoggedIn(true)
+                navigate('/')
             } catch (err) {
                 console.log(err)
             }
