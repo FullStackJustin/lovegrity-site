@@ -1,19 +1,30 @@
 // import { getAuth } from "firebase/auth";
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import lovegrityLogo from "../assets/lovegrityLogo.png"
 import "../styles/nav.css"
 import { logout } from "../firebase";
 import { auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 // import { UserAuth } from "../authContext";
 
-const Navbar = (props) => {
-    const {loggedIn} = props;
+const Navbar = () => {
+
     const [isOpen, setIsOpen] = useState(false);
-    const [user, setUser] = useState(auth.currentUser)
-    console.log(loggedIn)
+    const [user, setUser] = useState(auth.currentUser);
+
+    //get currently logged in user globally and update state accordingly
     useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user){
+                setUser(user)
+                console.log(user)
+            } else {
+                setUser(null);
+            }
+        })
+        
         console.log(user)
-        loggedIn ? setUser(auth.currentUser) : setUser(null);
+
     },[user])
 
     // toggle hidden dropdown content on more button
@@ -25,10 +36,18 @@ const Navbar = (props) => {
     }
 
     // toggle hidden dropdown content on user icon
+    // const toggleUserDropdown = () => {
+    //     const dropdownUserMenu = document.querySelector('#userDropContent');
+    //     dropdownUserMenu.classList.toggle('show');
+    // }
+    const dropdownRef = useRef(null);
     const toggleUserDropdown = () => {
-        const dropdownUserMenu = document.getElementById('userDropContent');
-        dropdownUserMenu.classList.toggle('show');
+      if (dropdownRef.current) {
+        dropdownRef.current.classList.toggle('show');
+      }
     }
+    useEffect(() => {
+    }, [dropdownRef]);
 
     // Toggle the navbar height based on user's scroll position
     const navToggle = () => {
@@ -41,6 +60,10 @@ const Navbar = (props) => {
 
         }
     }
+    
+    window.addEventListener('scroll', () => { navToggle() })
+    
+    // Function for closing dropdown when clicking off the element
     // const dropUserMenu = (e) => {
     //     if (!e.target.matches('.userDropbtn')) {
     //         var dropdowns = document.querySelector(".usersDropContent");
@@ -54,22 +77,13 @@ const Navbar = (props) => {
     //         }
     //     }
     // }
-
-    
-    
-
-
-    window.addEventListener('scroll', () => { navToggle() })
-
-    // Function for closing dropdown when clicking off the element
     // window.addEventListener('click', dropUserMenu)
-    console.log(auth.currentUser)
 
     return (
         <div>
             <div className="fixed top-0 z-50">
                 <nav id="navbar" className="h-15 w-[100vw] text-white text-[1.3em] font-[baskerville] tracking-wide bg-[#8047BA] bg-opacity-75 flex flex-row justify-around ">
-                    <div className="showBtn text-center flex items-center ">
+                    <div id="showBtn" className=" text-center flex items-center ">
                         <button className="h-[100%] fa-solid fa-bars" onClick={() => setIsOpen(true)}></button>
                         <div className={"navBurger font-[arial] text-[1.5em] pt-[10vh] text-start absolute left-0 top-0 h-[100vh] bg-[#161616] z-100 " + (isOpen ? " w-[100vw]" : "left-[-10vw] w-0 overflow-x-hidden")}>
                             <button className="absolute right-[2.5vw] top-[2.5vh] fa-solid fa-xmark" onClick={() => setIsOpen(false)}></button>
@@ -94,20 +108,20 @@ const Navbar = (props) => {
                             <a href="#account"><h3>My Account</h3></a>
                         </div>
                     </div>
-                    <div className="my-auto dropdownMenu transferToMenu w-[25%] flex flex-row justify-around ">
+                    <div id="transferToMenu" className="my-auto dropdownMenu w-[25%] flex flex-row justify-around ">
                         <a href="/">Home</a> &nbsp;
                         <a href="/about">About Us</a> &nbsp;
                         <a href="/services">Services</a>
                     </div>
-                    <a href="/" className=" my-auto w-[50%] md:w-[25%] lg:w-[15%]" id='navLogo'><img src={lovegrityLogo} alt="Lovegrity" /></a>
+                    <a href="/" className=" my-auto pl-[15px] w-[50%] md:w-[25%] lg:w-[15%]" id='navLogo'><img src={lovegrityLogo} alt="Lovegrity" /></a>
                     <div className="my-auto lg:w-auto flex flex-row justify-between ">
-                        <a href="/packages" className="transferToMenu flex flex-row my-auto no-breaks mr-[15px]">Care&nbsp;Packages</a> &nbsp;
-                        <div className="transferToMenu inline-block dropdown my-auto">
+                        <a href="/packages" id="transferToMenu" className=" flex flex-row my-auto no-breaks mr-[15px]">Care&nbsp;Packages</a> &nbsp;
+                        <div id="transferToMenu" className=" inline-block dropdown my-auto">
                             <button onClick={toggleMoreDropdown} className='dropBtn flex flex-row my-auto items-center'>  {/* onClick={toggleMoreDropdown} */}
                                 More &nbsp;
                                 <i id="moreArrow" className="transition-transform duration-400 fa-solid fa-2xs fa-chevron-down my-auto"></i>
                             </button>
-                            <div className="dropdownContent mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow absolute z-50" id="dropdown">
+                            <div className="dropdownContent mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow absolute z-70" id="dropdown">
                                 <a className="block py-[5px]" href="#faq">FAQ</a>
                                 <a className="block py-[5px]" href="/contact">Contact</a>
                             </div>
@@ -115,13 +129,13 @@ const Navbar = (props) => {
                         <div className="flex flex-row items-center border-solid border-white ml-[15px] pl-[15px] border-l-2">
                             <a href="#services"><i className="fa-solid fa-cart-shopping"></i></a>
                             &nbsp; &nbsp;
-                            <div className="transferToMenu inlineBlock ">
+                            <div id="transferToMenu" className=" inlineBlock ">
                                 <button onClick={toggleUserDropdown} className="userDropBtn flex flex-row my-auto items-center"><i className="transferToMenu fa-regular fa-user"></i></button>
-                                <div id="userDropContent" className="usersDropContent absolute right-[4vw] mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow z-50">
-                                    {loggedIn ? 
+                                <div id="userDropContent" ref={dropdownRef} className="usersDropContent absolute right-[4vw] mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow z-70">
+                                    {user ? 
                                     <>
-                                        <p className="block pb-[15px]">Signed in as:</p>
-                                        <p className="block py-[5px]">{auth.currentUser ? auth.currentUser.email : ""}</p>
+                                        <p className="block pb-[10px]">Signed in as:</p>
+                                        <p className="block">{auth.currentUser ? auth.currentUser.email : ""}</p>
                                         <hr />
                                         <p className="block py-[5px]">Bookings</p>
                                         <p className="block py-[5px]">My Account</p>

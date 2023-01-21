@@ -4,7 +4,7 @@
 .h-10, .h-15 {
   transition: height 0.25s ease-in-out;
 }
-.showBtn{
+#showBtn{
   display: none;
 }
 .navBurger{
@@ -12,13 +12,12 @@
     /* width: 0px; */
 
 }
-@media screen and (max-width:1023px) {
-  .showBtn{
+@media screen and (max-width:906px) {
+  #showBtn{
     display:block;
-    width: 5em;
     color:white;
   }
-  .transferToMenu{
+  #transferToMenu{
     display: none;
   }
 }

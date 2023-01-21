@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
 
 
 const Login = (props) => {
@@ -10,7 +9,6 @@ const Login = (props) => {
     const [loginPassword, setLoginPassword] = useState("");
     const navigate = useNavigate();
     const user = getAuth();
-    console.log(loginEmail, loginPassword, user.currentUser)
 
     const handleLogin = async(e) => {
         e.preventDefault();

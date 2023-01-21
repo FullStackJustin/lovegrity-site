@@ -7,15 +7,9 @@ import Services from './pages/services';
 import PackagesPg from './pages/packages';
 import Login from './pages/login';
 import Registration from './pages/signup';
-import { auth } from './firebase';
-import { useState } from 'react';
 
 
-function App(props) {
-  const user = auth.currentUser;
-  const [signedIn, setSignedIn] = useState(user)
-  const {handleLoggedIn, loggedIn} = props;
-  (user !== null ) ? handleLoggedIn(true) : handleLoggedIn(false);
+function App() {
 
   return (
     <Router>
@@ -25,7 +19,7 @@ function App(props) {
         <Route path="/about" element={<AboutPg/>}></Route>
         <Route path="/services" element={<Services/>}></Route>
         <Route path="/packages" element={<PackagesPg/>}></Route>
-        <Route path="/login" element={<Login loggedIn={loggedIn} handleLoggedIn={handleLoggedIn}/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
         <Route path="/registration" element={<Registration/>}></Route>
       </Routes>
     </Router>
