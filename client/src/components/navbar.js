@@ -28,26 +28,25 @@ const Navbar = () => {
     },[user])
 
     // toggle hidden dropdown content on more button
+    const dropDownRef = useRef(null);
     const toggleMoreDropdown = () => {
-        const dropdownMenu = document.getElementById('dropdown');
-        dropdownMenu.classList.toggle('show');
-        const moreArrow = document.getElementById('moreArrow');
+        if(dropDownRef.current){
+            dropDownRef.current.classList.toggle('hidden');
+        }
+        const moreArrow = document.querySelector('#moreArrow');
         moreArrow.classList.toggle("rotate-180")
     }
+    useEffect(() => {},[dropDownRef])
 
-    // toggle hidden dropdown content on user icon
-    // const toggleUserDropdown = () => {
-    //     const dropdownUserMenu = document.querySelector('#userDropContent');
-    //     dropdownUserMenu.classList.toggle('show');
-    // }
-    const dropdownRef = useRef(null);
+    // toggle ref for user icon dropdown menu
+    const userDropdownRef = useRef(null);
     const toggleUserDropdown = () => {
-      if (dropdownRef.current) {
-        dropdownRef.current.classList.toggle('show');
+      if (userDropdownRef.current) {
+        userDropdownRef.current.classList.toggle('hidden');
       }
     }
     useEffect(() => {
-    }, [dropdownRef]);
+    }, [userDropdownRef]);
 
     // Toggle the navbar height based on user's scroll position
     const navToggle = () => {
@@ -63,21 +62,6 @@ const Navbar = () => {
     
     window.addEventListener('scroll', () => { navToggle() })
     
-    // Function for closing dropdown when clicking off the element
-    // const dropUserMenu = (e) => {
-    //     if (!e.target.matches('.userDropbtn')) {
-    //         var dropdowns = document.querySelector(".usersDropContent");
-    //         var i;
-    //         for (i = 0; i < dropdowns.length; i++) {
-    //             console.log(dropdowns[i].classList);
-    //             var openDropdown = dropdowns[i];
-    //             if (openDropdown.classList.contains('show')) {
-    //                 dropdowns[i].classList.remove('show');
-    //             }
-    //         }
-    //     }
-    // }
-    // window.addEventListener('click', dropUserMenu)
 
     return (
         <div>
@@ -121,7 +105,7 @@ const Navbar = () => {
                                 More &nbsp;
                                 <i id="moreArrow" className="transition-transform duration-400 fa-solid fa-2xs fa-chevron-down my-auto"></i>
                             </button>
-                            <div className="dropdownContent mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow absolute z-70" id="dropdown">
+                            <div ref={dropDownRef} className="dropdownContent mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow absolute z-70" id="dropdown">
                                 <a className="block py-[5px]" href="#faq">FAQ</a>
                                 <a className="block py-[5px]" href="/contact">Contact</a>
                             </div>
@@ -131,7 +115,7 @@ const Navbar = () => {
                             &nbsp; &nbsp;
                             <div id="transferToMenu" className=" inlineBlock ">
                                 <button onClick={toggleUserDropdown} className="userDropBtn flex flex-row my-auto items-center"><i className="transferToMenu fa-regular fa-user"></i></button>
-                                <div id="userDropContent" ref={dropdownRef} className="usersDropContent absolute right-[4vw] mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow z-70">
+                                <div id="userDropContent" ref={userDropdownRef} className="usersDropContent absolute right-[4vw] mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow z-70">
                                     {user ? 
                                     <>
                                         <p className="block pb-[10px]">Signed in as:</p>
