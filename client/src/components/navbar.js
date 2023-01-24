@@ -15,35 +15,35 @@ const Navbar = () => {
     //get currently logged in user globally and update state accordingly
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            if (user){
+            if (user) {
                 setUser(user)
                 console.log(user)
             } else {
                 setUser(null);
             }
         })
-        
+
         console.log(user)
 
-    },[user])
+    }, [user])
 
     // toggle hidden dropdown content on more button
     const dropDownRef = useRef(null);
     const toggleMoreDropdown = () => {
-        if(dropDownRef.current){
+        if (dropDownRef.current) {
             dropDownRef.current.classList.toggle('hidden');
         }
         const moreArrow = document.querySelector('#moreArrow');
         moreArrow.classList.toggle("rotate-180")
     }
-    useEffect(() => {},[dropDownRef])
+    useEffect(() => { }, [dropDownRef])
 
     // toggle ref for user icon dropdown menu
     const userDropdownRef = useRef(null);
     const toggleUserDropdown = () => {
-      if (userDropdownRef.current) {
-        userDropdownRef.current.classList.toggle('hidden');
-      }
+        if (userDropdownRef.current) {
+            userDropdownRef.current.classList.toggle('hidden');
+        }
     }
     useEffect(() => {
     }, [userDropdownRef]);
@@ -59,9 +59,32 @@ const Navbar = () => {
 
         }
     }
-    
+
+    //State variables for cart popout menu
+    const [cartOpen, setCartOpen] = useState(false)
+
+    //Function for chat popup
+    const chatPopupRef = useRef(null);
+    const chatBubbleRef = useRef(null);
+    const toggleChatPopup = () => {
+        if (chatPopupRef.current) {
+            chatPopupRef.current.classList.toggle('hidden');
+        }
+        if (!chatPopupRef.current.classList.contains('hidden')) {
+            chatBubbleRef.current.classList.replace('fa-message', 'fa-xmark')
+        } else {
+            chatBubbleRef.current.classList.replace('fa-xmark', 'fa-message')
+        }
+    }
+
+    //function for toggling checked mark on Chat popup
+    const [isChecked, setIsChecked] = useState(false)
+    const toggleChecked = () => {
+        setIsChecked(!isChecked)
+    }
+
     window.addEventListener('scroll', () => { navToggle() })
-    
+
 
     return (
         <div>
@@ -111,34 +134,64 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div className="flex flex-row items-center border-solid border-white ml-[15px] pl-[15px] border-l-2">
-                            <a href="#services"><i className="fa-solid fa-cart-shopping"></i></a>
+                            <button onClick={() => { setCartOpen(true) }}><i className="fa-solid fa-cart-shopping"></i></button>
                             &nbsp; &nbsp;
                             <div id="transferToMenu" className=" inlineBlock ">
                                 <button onClick={toggleUserDropdown} className="userDropBtn flex flex-row my-auto items-center"><i className="transferToMenu fa-regular fa-user"></i></button>
                                 <div id="userDropContent" ref={userDropdownRef} className="usersDropContent absolute right-[4vw] mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow z-70">
-                                    {user ? 
-                                    <>
-                                        <p className="block pb-[10px]">Signed in as:</p>
-                                        <p className="block">{auth.currentUser ? auth.currentUser.email : ""}</p>
-                                        <hr />
-                                        <p className="block py-[5px]">Bookings</p>
-                                        <p className="block py-[5px]">My Account</p>
-                                       <a href="/"onClick={logout}>Log Out</a>
-                                    </> : 
-                                    <>
-                                        <a href="/login"><p className="block py-[5px]">Log in</p></a>
-                                        <a href="/registration"><p className="block py-[5px]">Create an Account</p></a>
-                                        <a href="/" onClick={logout}>Log Out</a>
-                                    </>
+                                    {user ?
+                                        <>
+                                            <p className="block pb-[10px]">Signed in as:</p>
+                                            <p className="block">{auth.currentUser ? auth.currentUser.email : ""}</p>
+                                            <hr />
+                                            <p className="block py-[5px]">Bookings</p>
+                                            <p className="block py-[5px]">My Account</p>
+                                            <a href="/" onClick={logout}>Log Out</a>
+                                        </> :
+                                        <>
+                                            <a href="/login"><p className="block py-[5px]">Log in</p></a>
+                                            <a href="/registration"><p className="block py-[5px]">Create an Account</p></a>
+                                            <a href="/" onClick={logout}>Log Out</a>
+                                        </>
                                     }
                                 </div>
                             </div>
                         </div>
                     </div>
                 </nav>
+                <div className={"cartPopout absolute top-0 right-0 z-51 h-[100vh] " + (cartOpen ? "w-[425px]" : "w-0")}>
+                    <div className="h-[8%] bg-[#8047BA] text-white text-[1.25em] flex flex-row justify-between items-center pr-[10px] pl-[10px] ">
+                        <i className="fa-solid fa-cart-shopping"></i>
+                        <button onClick={() => { setCartOpen(false) }} className="fa-solid fa-xmark"></button>
+                    </div>
+                    <div className=" h-[95%] bg-white">
+                        <div className="h-fit mx-[10px] w-full bg-white flex flex-col text-center font-[arial] ">
+                            <header className="text-[2em] h-[2.1em] text-clip overflow-hidden font-semibold mt-[10vh] py-[2.5vh] ">Cart is empty</header>
+                            <p className="h-[1.5em] text-clip overflow-hidden">Looks like you just haven't found the right thing yet.</p>
+                            <a href="/services" className="h-[1.2em] text-clip overflow-hidden underline">Browse Services</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="z-50 fixed bottom-[2.5vh] right-[2vw] w-[4rem] h-[4rem] rounded-full bg-[#8047BA] shadow-custom-shadow text-white text-center flex justify-center items-center ">
-                <button><i className="fa-solid fa-2xl fa-message"></i></button>
+            <div ref={chatPopupRef} className="hidden z-50 fixed bottom-0 right-0 md:bottom-[15vh] lg:bottom-[15vh] md:right-[2vw] lg:right-[2vw] w-screen md:w-[383px] lg:w-[383px] bg-white h-screen md:h-[85vh] lg:h-[85vh] overflow-y-scroll shadow-custom-shadow rounded-lg border border-white ">
+                <div className="w-full h-[20%] text-white bg-[#8047BA] ">
+                    <div className="w-[95%] mx-auto text-start text-[2em] font-[baskerville] ">Lovegrity - "you can't have integrity without LOVE"</div>
+                    <div className="text-bubble">
+                        <p>Hi! Let us know how we can help and we'll respond shortly.</p>
+                        <div className="bubble-arrow"></div>
+                    </div>
+                    <form className="text-black mt-[15px] w-[95%] mx-auto ">
+                        <input type="text" required className="firstInputs border border-solid border-gray my-[2vh] w-full h-[3em] " placeholder="Name"></input>
+                        <input type="text" required className="firstInputs border border-solid border-gray my-[2vh] w-full h-[3em] " placeholder="Email*"></input>
+                        <input type="text" required className="border border-solid border-gray mt-[2vh] mb-[2.5vh] w-full h-[10em] text-start " id="formMessage" placeholder="How can we help?*"></input>
+                        <span className="flex flex-row w-full text-[1.15em] text-[#000000bf] "><input type="radio" checked={isChecked} onClick={toggleChecked}></input>&emsp;<p className="">Sign up to receive email updates, announcements, and more.</p></span>
+                        <button className="w-full md:w-[25%] lg:w-[25%] md:ml-[135px] lg:ml-[135px] rounded-full bg-purple-700 text-white my-[2.5vh] py-[2.5vh] ">Send</button>
+                        <p className="text-center text-[.85em] text-[#5E5E5E] w-[95%] mx-auto pb-[25px] ">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+                    </form>
+                </div>
+            </div>
+            <div onClick={toggleChatPopup} className="z-50 fixed bottom-[2.5vh] right-[2vw] w-[4rem] h-[4rem] rounded-full bg-[#8047BA] shadow-custom-shadow text-white text-center flex justify-center items-center ">
+                <button ref={chatBubbleRef} className="fa-solid fa-2xl fa-message max-h-[95%] "></button>
             </div>
         </div>
     )

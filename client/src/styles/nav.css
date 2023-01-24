@@ -9,7 +9,9 @@
 }
 .navBurger{
   transition: width .5s ease-in-out;
-    /* width: 0px; */
+}
+.cartPopout{
+  transition: width .5s ease-in-out;
 
 }
 @media screen and (max-width:906px) {
@@ -28,4 +30,51 @@
 }
 .navBurger h3{
   padding-left:5vw;
+}
+.text-bubble {
+  width:90%;
+  margin:auto;
+  color: #303030;
+  background-color: #D7C3E9; /* Change the background color to your desired color */
+  border-radius: 10px; /* Adjust the border radius to your desired size */
+  padding: 10px; /* Adjust the padding to your desired size */
+  position: relative; /* Make sure the arrow is positioned relative to the text bubble */
+}
+
+.bubble-arrow {
+  width: 0; 
+  height: 0;
+  border-left: 10px solid #D7C3E9; /* Adjust the size of the arrow */
+  border-right: 10px solid transparent; /* Adjust the size of the arrow */
+  border-top: 10px solid #D7C3E9; /* Change the color of the arrow to match the background color of the text bubble */
+  position: absolute;
+  bottom: -10px; /* Adjust the position of the arrow */
+  left: 5%; /* Position the arrow horizontally */
+  margin-left: 10px; /* Adjust the margin to center the arrow */
+}
+input[type='radio'] {
+  box-sizing: border-box;
+  appearance: none;
+  background: white;
+  outline: .5px solid #333;
+  border: 3px solid white;
+  width: 18px;
+  height: 16px;
+  margin-top:8px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+input[type="radio"]:hover{
+  cursor:pointer;
+  outline: .5px solid #8047BA;
+}
+input[type="radio"]:active{
+  width:17px;
+  height:15px;
+  outline: .5px solid #8047BA;
+}
+input[type='radio']:checked {
+  background-image: url('../assets/checkmark.png');
+  color: #8047BA;
+  background-size: 20px;
+  background-position: right;
 }

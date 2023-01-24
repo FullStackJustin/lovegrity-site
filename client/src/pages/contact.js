@@ -9,7 +9,7 @@ const ContactPg = () => {
                 </div>
                 <div className="flex flex-col md:flex-col lg:flex-row">
                     <div className="mx-auto w-[90vw] lg:w-[40vw] ">
-                        <form id="dropLineForm" className="w ">
+                        <form id="dropLineForm">
                             <header className="text-start tracking-wider text-[1.5em] ">Drop us a line!</header>
                             <input type="text" className="firstInputs border border-solid border-gray my-[2vh] w-full h-[3em] " placeholder="Name"></input>
                             <input type="text" className="firstInputs border border-solid border-gray my-[2vh] w-full h-[3em] " placeholder="Email*"></input>

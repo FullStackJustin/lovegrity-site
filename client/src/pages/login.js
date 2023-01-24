@@ -3,8 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 
-const Login = (props) => {
-    const {handleLoggedIn} = props;
+const Login = () => {
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const navigate = useNavigate();
@@ -15,13 +14,13 @@ const Login = (props) => {
         if (user.currentUser == null ){
             try {
                 await signInWithEmailAndPassword(user, loginEmail, loginPassword)
-                handleLoggedIn(true)
-                navigate('/')
+                .then(() => {navigate('/')})
+                
             } catch (err) {
                 console.log(err)
             }
         } else {
-            navigate('/registration')
+            alert('Login failed, Please try again or create a new account')
         }
     }
     
