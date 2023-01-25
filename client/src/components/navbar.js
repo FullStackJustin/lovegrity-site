@@ -83,6 +83,23 @@ const Navbar = () => {
         setIsChecked(!isChecked)
     }
 
+    //Function for selecting current page
+    const currentPage = window.location.pathname;
+    const packagesPgRef = useRef({})
+    useEffect(() => {
+
+        console.log(currentPage)
+        const navLinks = document.querySelectorAll('#transferToMenu a');
+        navLinks.forEach(link => {
+            if(link.getAttribute('href') === currentPage){
+                link.classList.add('underline');
+            } else if(packagesPgRef.current.getAttribute('href') === currentPage){
+                packagesPgRef.current.classList.add('underline');
+            }
+        })
+    },[currentPage])
+    
+
     window.addEventListener('scroll', () => { navToggle() })
 
 
@@ -94,25 +111,61 @@ const Navbar = () => {
                         <button className="h-[100%] fa-solid fa-bars" onClick={() => setIsOpen(true)}></button>
                         <div className={"navBurger font-[arial] text-[1.5em] pt-[10vh] text-start absolute left-0 top-0 h-[100vh] bg-[#161616] z-100 " + (isOpen ? " w-[100vw]" : "left-[-10vw] w-0 overflow-x-hidden")}>
                             <button className="absolute right-[2.5vw] top-[2.5vh] fa-solid fa-xmark" onClick={() => setIsOpen(false)}></button>
-                            <a href="/"><h3>Home</h3></a>
-                            <hr />
-                            <a href="/about"><h3>About Us</h3></a>
-                            <hr />
-                            <a href="/services"><h3>Services</h3></a>
-                            <hr />
-                            <a href="/packages"><h3>Care Packages</h3></a>
-                            <hr />
-                            <a href="#faq"><h3>FAQ</h3></a>
-                            <hr />
-                            <a href="/contact"><h3>Contact</h3></a>
-                            <br />
-                            <h3 className="text-[.75em] tracking-wider text-gray-500 ">Account</h3>
-                            <hr />
-                            <a href="#signin"><h3>Sign In</h3></a>
-                            <hr />
-                            <a href="#bookings"><h3>Bookings</h3></a>
-                            <hr />
-                            <a href="#account"><h3>My Account</h3></a>
+                            {user ?
+                                <>
+                                    <div className="text-gray-500 text-[.65em] flex flex-col h-[15vh] items-stretch">
+                                        {/* <p>{user.displayName}</p> */}
+                                        <h3>{user.email}</h3>
+                                        <h3>{user.email}</h3>
+                                    </div>
+                                    <div className="overflow-y-scroll">
+                                        <hr />
+                                        <a href="/"><h3>Home</h3></a>
+                                        <hr />
+                                        <a href="/about"><h3>About Us</h3></a>
+                                        <hr />
+                                        <a href="/services"><h3>Services</h3></a>
+                                        <hr />
+                                        <a href="/packages"><h3>Care Packages</h3></a>
+                                        <hr />
+                                        <a href="#faq"><h3>FAQ</h3></a>
+                                        <hr />
+                                        <a href="/contact"><h3>Contact</h3></a> <br />
+                                        <h3 className="text-[.75em] tracking-wider text-gray-500 ">Account</h3>
+                                        <hr />
+                                        <hr />
+                                        <a href="#bookings"><h3>Bookings</h3></a>
+                                        <hr />
+                                        <a href="#account"><h3>My Account</h3></a>
+                                        <hr />
+                                        <button onClick={logout}><h3>Logout</h3></button>
+                                    </div>
+                                </>
+                                :
+                                <div className="overflow-y-scroll">
+                                    <hr />
+                                    <a href="/"><h3>Home</h3></a>
+                                    <hr />
+                                    <a href="/about"><h3>About Us</h3></a>
+                                    <hr />
+                                    <a href="/services"><h3>Services</h3></a>
+                                    <hr />
+                                    <a href="/packages"><h3>Care Packages</h3></a>
+                                    <hr />
+                                    <a href="#faq"><h3>FAQ</h3></a>
+                                    <hr />
+                                    <a href="/contact"><h3>Contact</h3></a> <br />
+                                    <h3 className="text-[.75em] tracking-wider text-gray-500 ">Account</h3>
+                                    <hr />
+                                    <a href="/login"><h3>Sign In</h3></a>
+                                    <hr />
+                                    <a href="#bookings"><h3>Bookings</h3></a>
+                                    <hr />
+                                    <a href="#account"><h3>My Account</h3></a>
+                                    <hr />
+                                </div>
+                            }
+
                         </div>
                     </div>
                     <div id="transferToMenu" className="my-auto dropdownMenu w-[25%] flex flex-row justify-around ">
@@ -122,7 +175,7 @@ const Navbar = () => {
                     </div>
                     <a href="/" className=" my-auto pl-[15px] w-[50%] md:w-[25%] lg:w-[15%]" id='navLogo'><img src={lovegrityLogo} alt="Lovegrity" /></a>
                     <div className="my-auto lg:w-auto flex flex-row justify-between ">
-                        <a href="/packages" id="transferToMenu" className=" flex flex-row my-auto no-breaks mr-[15px]">Care&nbsp;Packages</a> &nbsp;
+                        <a id="transferToMenu" ref={packagesPgRef} href="/packages" className={" flex flex-row my-auto no-breaks mr-[15px]"}>Care&nbsp;Packages</a> &ensp;
                         <div id="transferToMenu" className=" inline-block dropdown my-auto">
                             <button onClick={toggleMoreDropdown} className='dropBtn flex flex-row my-auto items-center'>  {/* onClick={toggleMoreDropdown} */}
                                 More &nbsp;
@@ -180,12 +233,12 @@ const Navbar = () => {
                         <p>Hi! Let us know how we can help and we'll respond shortly.</p>
                         <div className="bubble-arrow"></div>
                     </div>
-                    <form className="text-black mt-[15px] w-[95%] mx-auto ">
+                    <form className="text-black mt-[15px] w-[85%] mx-auto ">
                         <input type="text" required className="firstInputs border border-solid border-gray my-[2vh] w-full h-[3em] " placeholder="Name"></input>
                         <input type="text" required className="firstInputs border border-solid border-gray my-[2vh] w-full h-[3em] " placeholder="Email*"></input>
-                        <input type="text" required className="border border-solid border-gray mt-[2vh] mb-[2.5vh] w-full h-[10em] text-start " id="formMessage" placeholder="How can we help?*"></input>
-                        <span className="flex flex-row w-full text-[1.15em] text-[#000000bf] "><input type="radio" checked={isChecked} onClick={toggleChecked}></input>&emsp;<p className="">Sign up to receive email updates, announcements, and more.</p></span>
-                        <button className="w-full md:w-[25%] lg:w-[25%] md:ml-[135px] lg:ml-[135px] rounded-full bg-purple-700 text-white my-[2.5vh] py-[2.5vh] ">Send</button>
+                        <input type="text" required className="border border-solid border-gray mt-[2vh] mb-[5vh] w-full h-[10em] text-start " id="formMessage" placeholder="How can we help?*"></input>
+                        <input type="radio" id="subRadio" value="subscribed" checked={isChecked} onClick={toggleChecked}></input>&emsp;<label for="subRadio" className="">Sign up to receive email updates, announcements, and more.</label>
+                        <button className="w-full md:w-[35%] lg:w-[35%] md:ml-[115px] lg:ml-[115px] rounded-full bg-purple-700 text-white my-[2.5vh] py-[2.5vh] ">Send</button>
                         <p className="text-center text-[.85em] text-[#5E5E5E] w-[95%] mx-auto pb-[25px] ">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
                     </form>
                 </div>
