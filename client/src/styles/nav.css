@@ -14,7 +14,7 @@
   transition: width .5s ease-in-out;
 
 }
-@media screen and (max-width:906px) {
+@media screen and (max-width:895px) {
   #showBtn{
     display:block;
     color:white;
@@ -83,4 +83,7 @@ input[type='radio']:checked {
 input[type='radio']:checked:active {
   
   outline: 2.5px solid #8047BA;
+}
+.chatPopout{
+  box-shadow: black 0px -10px 10px;
 }

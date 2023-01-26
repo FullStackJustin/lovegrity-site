@@ -128,7 +128,7 @@ const Navbar = () => {
                                         <hr />
                                         <a href="/packages"><h3>Care Packages</h3></a>
                                         <hr />
-                                        <a href="#faq"><h3>FAQ</h3></a>
+                                        <a href="/faq"><h3>FAQ</h3></a>
                                         <hr />
                                         <a href="/contact"><h3>Contact</h3></a> <br />
                                         <h3 className="text-[.75em] tracking-wider text-gray-500 ">Account</h3>
@@ -152,7 +152,7 @@ const Navbar = () => {
                                     <hr />
                                     <a href="/packages"><h3>Care Packages</h3></a>
                                     <hr />
-                                    <a href="#faq"><h3>FAQ</h3></a>
+                                    <a href="/faq"><h3>FAQ</h3></a>
                                     <hr />
                                     <a href="/contact"><h3>Contact</h3></a> <br />
                                     <h3 className="text-[.75em] tracking-wider text-gray-500 ">Account</h3>
@@ -169,29 +169,29 @@ const Navbar = () => {
                         </div>
                     </div>
                     <div id="transferToMenu" className="my-auto dropdownMenu w-[25%] flex flex-row justify-around ">
-                        <a href="/">Home</a> &nbsp;
-                        <a href="/about">About Us</a> &nbsp;
-                        <a href="/services">Services</a>
+                        <a className="underline-offset-8" href="/">Home</a> &nbsp;
+                        <a className="underline-offset-8" href="/about">About Us</a> &nbsp;
+                        <a className="underline-offset-8" href="/services">Services</a>
                     </div>
                     <a href="/" className=" my-auto pl-[15px] w-[50%] md:w-[25%] lg:w-[15%]" id='navLogo'><img src={lovegrityLogo} alt="Lovegrity" /></a>
                     <div className="my-auto lg:w-auto flex flex-row justify-between ">
-                        <a id="transferToMenu" ref={packagesPgRef} href="/packages" className={" flex flex-row my-auto no-breaks mr-[15px]"}>Care&nbsp;Packages</a> &ensp;
+                        <a id="transferToMenu" ref={packagesPgRef} href="/packages" className={"underline-offset-8 flex flex-row my-auto no-breaks mr-[15px]"}>Care&nbsp;Packages</a> &ensp;
                         <div id="transferToMenu" className=" inline-block dropdown my-auto">
-                            <button onClick={toggleMoreDropdown} className='dropBtn flex flex-row my-auto items-center'>  {/* onClick={toggleMoreDropdown} */}
+                            <button onClick={toggleMoreDropdown} className='dropBtn flex flex-row my-auto items-center border-solid border-white border-r-2 pr-[15px]'>  {/* onClick={toggleMoreDropdown} */}
                                 More &nbsp;
                                 <i id="moreArrow" className="transition-transform duration-400 fa-solid fa-2xs fa-chevron-down my-auto"></i>
                             </button>
                             <div ref={dropDownRef} className="dropdownContent mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow absolute z-70" id="dropdown">
-                                <a className="block py-[5px]" href="#faq">FAQ</a>
+                                <a className="block py-[5px]" href="/faq">FAQ</a>
                                 <a className="block py-[5px]" href="/contact">Contact</a>
                             </div>
                         </div>
-                        <div className="flex flex-row items-center border-solid border-white ml-[15px] pl-[15px] border-l-2">
-                            <button onClick={() => { setCartOpen(true) }}><i className="fa-solid fa-cart-shopping"></i></button>
+                        <div className="flex flex-row items-center ml-[15px] ">
+                            <button onClick={() => { setCartOpen(true) }} className="fa-solid fa-cart-shopping"></button>
                             &nbsp; &nbsp;
                             <div id="transferToMenu" className=" inlineBlock ">
-                                <button onClick={toggleUserDropdown} className="userDropBtn flex flex-row my-auto items-center"><i className="transferToMenu fa-regular fa-user"></i></button>
-                                <div id="userDropContent" ref={userDropdownRef} className="usersDropContent absolute right-[4vw] mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow z-70">
+                                <button onClick={toggleUserDropdown} className=" flex flex-row my-auto items-center"><i className="transferToMenu fa-regular fa-user"></i></button>
+                                <div ref={userDropdownRef} className="usersDropContent absolute right-[4vw] mt-[15px] mx-auto hidden bg-[#8047BA] p-[15px] rounded-md shadow-custom-shadow z-70">
                                     {user ?
                                         <>
                                             <p className="block pb-[10px]">Signed in as:</p>
@@ -212,8 +212,8 @@ const Navbar = () => {
                         </div>
                     </div>
                 </nav>
-                <div className={"cartPopout absolute top-0 right-0 z-51 h-[100vh] " + (cartOpen ? "w-[425px]" : "w-0")}>
-                    <div className="h-[8%] bg-[#8047BA] text-white text-[1.25em] flex flex-row justify-between items-center pr-[10px] pl-[10px] ">
+                <div className={"cartPopout chatPopout absolute top-0 right-0 z-51 h-[100vh] " + (cartOpen ? "w-[425px]" : "w-0")}>
+                    <div className=" bg-[#8047BA] text-white text-[1.25em] flex flex-row justify-between items-center pr-[10px] pl-[10px] ">
                         <i className="fa-solid fa-cart-shopping"></i>
                         <button onClick={() => { setCartOpen(false) }} className="fa-solid fa-xmark"></button>
                     </div>

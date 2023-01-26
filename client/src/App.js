@@ -7,6 +7,7 @@ import Services from './pages/services';
 import PackagesPg from './pages/packages';
 import Login from './pages/login';
 import Registration from './pages/signup';
+import Faq from './pages/faq';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/services" element={<Services/>}></Route>
         <Route path="/packages" element={<PackagesPg/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="/faq" element={<Faq/>}></Route>
         <Route path="/registration" element={<Registration/>}></Route>
       </Routes>
     </Router>

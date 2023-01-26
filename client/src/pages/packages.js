@@ -35,7 +35,7 @@ const PackagesPg = () => {
                         <p className="text-zinc-600 text-[1.15em] ">- Medication ordering and pickups</p>
                         <p className="text-zinc-600 text-[1.15em] ">- Chronic disease monitoring or management</p>
                         <p className="text-zinc-600 text-[1.15em] ">*DISCOUNTED RATES ON ANY ADDITIONAL NURSING SERVICES *</p>
-                        <button className="w-[45%] my-[2.5em] p-[5px] text-[1.15em] border-2 border-solid border-[#8047BA] rounded-full ">Get Started Today</button>
+                        <button className="w-[55%] my-[2.5em] p-[5px] text-[1.15em] border-2 border-solid border-[#8047BA] rounded-full ">Get Started Today</button>
                     </div>
                 </div>
                 <div className="w-full flex flex-col ">
@@ -54,7 +54,7 @@ const PackagesPg = () => {
                             <p className="text-zinc-600 text-[1.15em] ">- (1) Initial nurse accompanied doctor office visit and every 2 months as needed</p>
                             <p className="text-zinc-600 text-[1.15em] ">- Medication ordering and pickups</p>
                             <p className="text-zinc-600 text-[1.15em] ">*DISCOUNTED RATES ON ANY ADDITIONAL NURSING SERVICES *</p>
-                            <button className="w-[45%] my-[2.5em] p-[5px] text-[1.15em] border-2 border-solid border-[#8047BA] rounded-full ">Get Started Today</button>
+                            <button className="w-[55%] my-[2.5em] p-[5px] text-[1.15em] border-2 border-solid border-[#8047BA] rounded-full ">Get Started Today</button>
                         </div>
                     </div>
                     <div className="w-full flex flex-col md:flex-row md:justify-between lg:flex-row lg:justify-between ">
@@ -72,7 +72,7 @@ const PackagesPg = () => {
                             <p className="text-zinc-600 text-[1.15em] ">- (1) Initial nurse accompanied doctor office visit and every 2 months as needed</p>
                             <p className="text-zinc-600 text-[1.15em] ">- Medication ordering and pickups</p>
                             <p className="text-zinc-600 text-[1.15em] ">*DISCOUNTED RATES ON ANY ADDITIONAL NURSING SERVICES *</p>
-                            <button className="w-[45%] my-[2.5em] p-[5px] text-[1.15em] border-2 border-solid border-[#8047BA] rounded-full ">Get Started Today</button>
+                            <button className="w-[55%] my-[2.5em] p-[5px] text-[1.15em] border-2 border-solid border-[#8047BA] rounded-full ">Get Started Today</button>
                         </div>
                     </div>
                 </div>
