@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 const Calendar = (props) => {
-    const {handleSetState} = props
+    const { handleSetState } = props
     const closeCalendar = () => {
         handleSetState(false)
     }
@@ -16,6 +16,21 @@ const Calendar = (props) => {
     }
 
     const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    const [selectedDate, setSelectedDate] = useState("")
+    console.log(selectedDate)
+
+    const dateMsg = useRef({})
+    const toggleDateMsg = (e) => {
+        setSelectedDate(e.currentTarget.textContent)
+        // const selected = document.getElementsByClassName('bg-black')
+        // for (let i = 0; i < selected.length; i++) {
+        //     selected[i].classList.remove('bg-black')
+        // }
+        // e.currentTarget.parentNode.classList.add('bg-black')
+        if (dateMsg.current) {
+            dateMsg.current.classList.remove('hidden');
+        }
+    }
 
     return (
         <div className="bg-[#8047BA] w-[90vw] text-white lg:w-[85vw] mx-auto pb-[100px]">
@@ -51,7 +66,7 @@ const Calendar = (props) => {
                                 {Array.from({ length: 7 }, (_, j) => {
                                     const day = i * 7 + j + 1 - new Date(date.getFullYear(), date.getMonth(), 1).getDay();
                                     if (day > 0 && day <= daysInMonth) {
-                                        return <td key={j} className={`  ${day === new Date().getDate() ? 'bg-white rounded-full text-black' : ''}`}><button>{day}</button></td>;
+                                        return <td key={j} className={`  ${day === new Date().getDate() ? 'bg-white rounded-full text-black' : ''} ${new Date().getDate() < day ? 'border bordergray-500 rounded-full' : ''}`}><button onClick={toggleDateMsg}>{day}</button></td>;
                                     }
                                     return <td key={j}></td>;
                                 })}
@@ -59,8 +74,8 @@ const Calendar = (props) => {
                         ))}
                     </tbody>
                 </table>
-                <div className="w-full bg-[#713EA5] min-h-[15vh] mt-[25px] text-white text-center ">
-                    <p className=" brightness-100 z-10 mt-[5vh]">There are no available times on this day. Please choose a highlighted date to see available times.</p>
+                <div ref={dateMsg} className="w-full hidden bg-[#713EA5] min-h-[15vh] mt-[25px] text-white text-center ">
+                    {new Date().getDate === 1 || 2 || 3 || 4 || 5 ? <p>Today is available</p> : <p className=" brightness-100 z-10 mt-[5vh]">There are no available times on this day. Please choose a highlighted date to see available times.</p>}
                 </div>
             </div>
             <div>

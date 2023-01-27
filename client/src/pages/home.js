@@ -16,7 +16,7 @@ const Home = () => {
                     <hr className="w-[60%] m-auto mt-[1.5vh] "></hr>
                     <p className='w-[60%] text-center text-white text-[1em] mt-[5vh] mx-auto ' >"SERVICES WITH LOVE AND INTEGRITY"</p>
                     <div className="w-[100%] flex justify-center">
-                        <button className="bg-white w-[8em] text-[1.5em] rounded-full mt-[10vh] lg:mt-[5vh] p-[10px] ">Learn More</button>
+                        <a href="/about"><button className="bg-white w-[8em] text-[1.5em] rounded-full mt-[10vh] lg:mt-[5vh] p-[10px] ">Learn More</button></a>
                     </div>
                 </div>
             </div>

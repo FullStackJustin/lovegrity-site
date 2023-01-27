@@ -40,7 +40,7 @@ const Navbar = () => {
 
     // toggle ref for user icon dropdown menu
     const userDropdownRef = useRef(null);
-    const toggleUserDropdown = () => {
+    const toggleUserDropdown = (e) => {
         if (userDropdownRef.current) {
             userDropdownRef.current.classList.toggle('hidden');
         }
@@ -99,14 +99,19 @@ const Navbar = () => {
         })
     },[currentPage])
     
-
+    // const offclickUserMenu = (e) => {
+    //     if (e.target !== userDropdownRef){
+    //         userDropdownRef.current.classList.add('hidden')
+    //     }
+    // }
+    // window.addEventListener('click', offclickUserMenu)
     window.addEventListener('scroll', () => { navToggle() })
 
 
     return (
         <div>
             <div className="fixed top-0 z-50">
-                <nav id="navbar" className="h-15 w-[100vw] text-white text-[1.3em] font-[baskerville] tracking-wide bg-[#8047BA] bg-opacity-75 flex flex-row justify-around ">
+                <nav id="navbar" className="h-15 w-[100vw] text-white text-[1.3em] font-[baskerville] tracking-wide bg-[#8047BA] bg-opacity-75 backdrop-blur-[2px] flex flex-row justify-around ">
                     <div id="showBtn" className=" text-center flex items-center ">
                         <button className="h-[100%] fa-solid fa-bars" onClick={() => setIsOpen(true)}></button>
                         <div className={"navBurger font-[arial] text-[1.5em] pt-[10vh] text-start absolute left-0 top-0 h-[100vh] bg-[#161616] z-100 " + (isOpen ? " w-[100vw]" : "left-[-10vw] w-0 overflow-x-hidden")}>
