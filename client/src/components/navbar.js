@@ -209,7 +209,6 @@ const Navbar = () => {
                                         <>
                                             <a href="/login"><p className="block py-[5px]">Log in</p></a>
                                             <a href="/registration"><p className="block py-[5px]">Create an Account</p></a>
-                                            <a href="/" onClick={logout}>Log Out</a>
                                         </>
                                     }
                                 </div>
